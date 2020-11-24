@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.openurp</groupId>
+    <artifactId>openurp-parent</artifactId>
+    <version>0.4.4</version>
+  </parent>
+  <groupId>org.openurp.std.creditbank</groupId>
+  <artifactId>openurp-std-creditbank-adminapp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>OpenURP Std CreditBank Adminapp</name>
+
+  <properties>
+    <openurp.api.version>0.18.1</openurp.api.version>
+    <openurp.edu.web.version>0.1.8</openurp.edu.web.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.openurp.edu</groupId>
+      <artifactId>openurp-edu-boot</artifactId>
+      <version>${openurp.edu.web.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openurp.edu</groupId>
+      <artifactId>openurp-edu-web</artifactId>
+      <version>${openurp.edu.web.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openurp.edu.grade</groupId>
+      <artifactId>openurp-edu-grade-api</artifactId>
+      <version>${openurp.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openurp.edu.extern</groupId>
+      <artifactId>openurp-edu-extern-api</artifactId>
+      <version>${openurp.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openurp.edu.graduation</groupId>
+      <artifactId>openurp-edu-graduation-api</artifactId>
+      <version>${openurp.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openurp.std.info</groupId>
+      <artifactId>openurp-std-info-api</artifactId>
+      <version>${openurp.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.beangle.data</groupId>
+      <artifactId>beangle-data-transfer_2.13</artifactId>
+      <version>${beangle.data.version}</version>
+    </dependency>
+  </dependencies>
+</project>
