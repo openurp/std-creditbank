@@ -27,7 +27,7 @@ import org.beangle.webmvc.entity.action.{EntityAction, ExportSupport}
 import org.openurp.edu.extern.code.model.{CertificateCategory, CertificateSubject}
 import org.openurp.edu.extern.model.CertificateGrade
 import org.openurp.edu.web.ProjectSupport
-import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradePropertyExtractor, CourseGradePropertyExtractor}
+import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradePropertyExtractor}
 
 class CertificateAction extends EntityAction[CertificateGrade] with ExportSupport[CertificateGrade] with ProjectSupport {
 
@@ -66,7 +66,9 @@ class CertificateAction extends EntityAction[CertificateGrade] with ExportSuppor
   }
 
   override def configExport(setting: ExportSetting): Unit = {
-    setting.context.extractor = new CertificateGradePropertyExtractor()
+    val project = getProject
+    val schoolCode = project.properties.getOrElse("std.creditbank.schooCode", "")
+    setting.context.extractor = new CertificateGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>
       g.courses map (c => new CertificateData(g, c))

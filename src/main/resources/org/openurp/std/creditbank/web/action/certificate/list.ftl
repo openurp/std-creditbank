@@ -2,7 +2,7 @@
 [@b.head/]
 [@b.grid items=certificateGrades var="certificateGrade"]
     [@b.gridbar]
-      bar.addItem("导出", action.exportData("grade.std.user.name:姓名,grade.std.person.code:身份证号,grade.subject.institutionCode:转换学校代码,original.course.code:原课程来源代码,grade.subject.name:原专业名称,grade.subject.name:原课程名称,grade.subject.institutionName:原办学机构,original.level.code:原教育层次代码,original.project.category.code:原教育类别代码,original.course.credits:原学分,original.course.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredOn:获得时间,grade.std.level.code:转换后教育层次代码,course.code:转换后课程代码,course.name:转换后课程名称,course.credits:转换后学分,grade.convertOn:转换时间,grade.std.state.major.name:转换后专业", "xls", "fileName=批次学分银行成绩-证书成绩"), "excel.png");
+      bar.addItem("导出", action.exportData("grade.std.user.name:姓名,grade.std.person.code:身份证号,schoolCode:转换学校代码,original.course.code:原课程来源代码,grade.major.name:原专业名称,grade.subject.name:原课程名称,grade.subject.institutionName:原办学机构,original.level.code:原教育层次代码,original.project.category.code:原教育类别代码,original.course.credits:原学分,original.course.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredOn:获得时间,grade.std.level.code:转换后教育层次代码,course.code:转换后课程代码,course.name:转换后课程名称,course.credits:转换后学分,grade.convertOn:转换时间,grade.std.state.major.name:转换后专业", "xls", "fileName=学分银行成绩-证书成绩"), "excel.png");
     [/@]
     [@b.row]
         [@b.boxcol/]
