@@ -36,7 +36,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * <tr><td>6. 原课程名称</td><td>grade.subject.name</td><td></td></tr>
  * <tr><td>7. 原办学机构</td><td>grade.subject.institutionName</td><td></td></tr>
  * <tr><td>8. 原教育层次代码</td><td>original.level.code</td><td></td></tr>
- * <tr><td>9. 原教育类别代码</td><td>original.project.category.code</td><td></td></tr>
+ * <tr><td>9. 原教育类别代码</td><td>original.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
  * <tr><td>10. 原学分</td><td>original.course.credits</td><td>以0代替</td></tr>
  * <tr><td>11. 原学时</td><td>original.course.creditHours</td><td>以0代替</td></tr>
  * <tr><td>12. 原成绩</td><td>grade.scoreText</td><td></td></tr>
@@ -50,7 +50,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * </tbody>
  * </table>
  */
-class CertificateGradePropertyExtractor extends DefaultPropertyExtractor {
+class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPropertyExtractor {
 
   private val yearMonth = DateTimeFormatter.ofPattern("YYYYMM")
 
@@ -63,7 +63,7 @@ class CertificateGradePropertyExtractor extends DefaultPropertyExtractor {
       case "original.course.credits" => "0"
       case "original.course.creditHours" => "0"
       case "grade.major.name" => "待补"
-      case "schoolCode" => ""
+      case "schoolCode" => schoolCode
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
       case "grade.acquiredOn" => data.grade.acquiredOn.format(yearMonth)
       case _ => super.getPropertyValue(target, property)

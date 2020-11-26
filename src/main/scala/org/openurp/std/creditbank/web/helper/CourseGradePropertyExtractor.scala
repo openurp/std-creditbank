@@ -38,7 +38,7 @@ import org.openurp.std.info.model.Graduation
  * <tr><td>4. 专业名称</td><td>std.state.major.name</td><td></td></tr>
  * <tr><td>5. 课程名称</td><td>course.name</td><td></td></tr>
  * <tr><td>6. 教育层次代码</td><td>std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
- * <tr><td>7. 教育类别代码</td><td>std.project.category.code</td><td></td></tr>
+ * <tr><td>7. 教育类别代码</td><td>std.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
  * <tr><td>8. 学分</td><td>course.credits</td><td></td></tr>
  * <tr><td>9. 学时</td><td>course.creditHours</td><td></td></tr>
  * <tr><td>10. 成绩</td><td>scoreText</td><td></td></tr>
@@ -80,6 +80,8 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
       }
     } else if (property == "remark") {
       ""
+    } else if (property == "course.credits") {
+      FloatTrunc.trunc(grade.course.credits)
     } else {
       super.getPropertyValue(target, property)
     }

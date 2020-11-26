@@ -56,7 +56,9 @@ class ExchangeAction extends EntityAction[ExchangeGrade] with ExportSupport[Exch
   }
 
   override def configExport(setting: ExportSetting): Unit = {
-    setting.context.extractor = new ExchangeGradePropertyExtractor()
+    val project = getProject
+    val schoolCode = project.properties.getOrElse("std.creditbank.schooCode", "")
+    setting.context.extractor = new ExchangeGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>
       g.courses map (c => new ExchangeGradeData(g, c))
