@@ -24,8 +24,8 @@ import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.{EntityAction, ExportSupport}
 import org.openurp.code.edu.model.CourseTakeType
 import org.openurp.edu.grade.course.model.CourseGrade
-import org.openurp.edu.graduation.audit.model.GraduateSession
 import org.openurp.std.creditbank.web.helper.CourseGradePropertyExtractor
+import org.openurp.std.graduation.audit.model.GraduateSession
 import org.openurp.std.info.model.Graduation
 
 /*
