@@ -19,13 +19,12 @@
 package org.openurp.std.creditbank.web.action
 
 import java.time.ZoneId
-
 import org.beangle.data.dao.OqlBuilder
 import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.{EntityAction, ExportSupport}
+import org.openurp.boot.edu.helper.ProjectSupport
 import org.openurp.edu.extern.model.ExchangeGrade
-import org.openurp.edu.web.ProjectSupport
 import org.openurp.std.creditbank.web.helper.{ExchangeGradeData, ExchangeGradePropertyExtractor}
 
 class ExchangeAction extends EntityAction[ExchangeGrade] with ExportSupport[ExchangeGrade] with ProjectSupport {

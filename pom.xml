@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.openurp.std.creditbank</groupId>
   <artifactId>openurp-std-creditbank-adminapp</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.2</version>
   <packaging>war</packaging>
   <name>OpenURP Std CreditBank Adminapp</name>
 
