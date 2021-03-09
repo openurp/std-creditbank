@@ -13,8 +13,8 @@
   <name>OpenURP Std CreditBank Adminapp</name>
 
   <properties>
-    <openurp.api.version>0.20.4</openurp.api.version>
-    <openurp.boot.version>0.0.2</openurp.boot.version>
+    <openurp.api.version>0.21.0</openurp.api.version>
+    <openurp.boot.version>0.0.3</openurp.boot.version>
   </properties>
 
   <dependencies>
