@@ -23,7 +23,7 @@ import org.beangle.data.dao.OqlBuilder
 import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.{EntityAction, ExportSupport}
-import org.openurp.boot.edu.helper.ProjectSupport
+import org.openurp.starter.edu.helper.ProjectSupport
 import org.openurp.edu.extern.code.model.{CertificateCategory, CertificateSubject}
 import org.openurp.edu.extern.model.CertificateGrade
 import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradePropertyExtractor}

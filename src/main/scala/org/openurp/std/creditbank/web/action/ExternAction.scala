@@ -23,11 +23,11 @@ import org.beangle.data.dao.OqlBuilder
 import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.{EntityAction, ExportSupport}
-import org.openurp.boot.edu.helper.ProjectSupport
-import org.openurp.edu.extern.model.ExchangeGrade
-import org.openurp.std.creditbank.web.helper.{ExchangeGradeData, ExchangeGradePropertyExtractor}
+import org.openurp.starter.edu.helper.ProjectSupport
+import org.openurp.edu.extern.model.ExternGrade
+import org.openurp.std.creditbank.web.helper.{ExternGradeData, ExternGradePropertyExtractor}
 
-class ExchangeAction extends EntityAction[ExchangeGrade] with ExportSupport[ExchangeGrade] with ProjectSupport {
+class ExternAction extends EntityAction[ExternGrade] with ExportSupport[ExternGrade] with ProjectSupport {
 
   def index: View = {
     put("departments", getDeparts)
@@ -38,29 +38,29 @@ class ExchangeAction extends EntityAction[ExchangeGrade] with ExportSupport[Exch
   def search: View = {
     val builder = getQueryBuilder
     builder.limit(getPageLimit)
-    put("exchangeGrades", entityDao.search(builder))
+    put("externGrades", entityDao.search(builder))
     forward()
   }
 
-  override protected def getQueryBuilder: OqlBuilder[ExchangeGrade] = {
+  override protected def getQueryBuilder: OqlBuilder[ExternGrade] = {
     val builder = super.getQueryBuilder
     getDate("fromAt") foreach { fromAt =>
-      builder.where("exchangeGrade.updatedAt >= :fromAt", fromAt.atTime(0, 0, 0).atZone(ZoneId.systemDefault()).toInstant)
+      builder.where("externGrade.updatedAt >= :fromAt", fromAt.atTime(0, 0, 0).atZone(ZoneId.systemDefault()).toInstant)
     }
     getDate("toAt") foreach { toAt =>
-      builder.where(" exchangeGrade.updatedAt <= :toAt", toAt.plusDays(1).atTime(0, 0, 0).atZone(ZoneId.systemDefault()).toInstant)
+      builder.where(" externGrade.updatedAt <= :toAt", toAt.plusDays(1).atTime(0, 0, 0).atZone(ZoneId.systemDefault()).toInstant)
     }
-    builder.where("exists (from exchangeGrade.courses ec)")
+    builder.where("exists (from externGrade.courses ec)")
     builder
   }
 
   override def configExport(setting: ExportSetting): Unit = {
     val project = getProject
     val schoolCode = project.properties.getOrElse("std.creditbank.schooCode", "")
-    setting.context.extractor = new ExchangeGradePropertyExtractor(schoolCode)
+    setting.context.extractor = new ExternGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>
-      g.courses map (c => new ExchangeGradeData(g, c))
+      g.courses map (c => new ExternGradeData(g, c))
     }
     setting.context.put("items", rs)
   }

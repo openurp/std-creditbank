@@ -19,8 +19,8 @@
 package org.openurp.std.creditbank.web.helper
 
 import org.openurp.base.edu.model.Course
-import org.openurp.edu.extern.model.ExchangeGrade
+import org.openurp.edu.extern.model.ExternGrade
 
-class ExchangeGradeData(val grade: ExchangeGrade, val course: Course) {
+class ExternGradeData(val grade: ExternGrade, val course: Course) {
 
 }

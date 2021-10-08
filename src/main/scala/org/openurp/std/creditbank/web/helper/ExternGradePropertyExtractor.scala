@@ -50,12 +50,12 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * </tbody>
  * </table>
  */
-class ExchangeGradePropertyExtractor(schoolCode: String) extends DefaultPropertyExtractor {
+class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyExtractor {
 
   private val yearMonth = DateTimeFormatter.ofPattern("YYYYMM")
 
   override def getPropertyValue(target: Object, property: String): Any = {
-    val data = target.asInstanceOf[ExchangeGradeData]
+    val data = target.asInstanceOf[ExternGradeData]
     property match {
       case "original.course.code" => "01"
       case "grade.credits" => FloatTrunc.trunc(data.grade.credits)

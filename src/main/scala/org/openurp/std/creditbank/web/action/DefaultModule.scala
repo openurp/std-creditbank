@@ -25,6 +25,6 @@ class DefaultModule extends BindModule {
   override protected def binding(): Unit = {
     bind(classOf[CourseAction])
     bind(classOf[CertificateAction])
-    bind(classOf[ExchangeAction])
+    bind(classOf[ExternAction])
   }
 }
