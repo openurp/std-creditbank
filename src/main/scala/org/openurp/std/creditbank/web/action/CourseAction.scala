@@ -1,27 +1,26 @@
 /*
- * OpenURP, Agile University Resource Planning Solution.
- *
- * Copyright © 2014, The OpenURP Software.
+ * Copyright (C) 2005, The OpenURP Software.
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * it under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful.
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package org.openurp.std.creditbank.web.action
 
 import org.beangle.data.dao.OqlBuilder
 import org.beangle.data.transfer.exporter.ExportSetting
-import org.beangle.webmvc.api.view.View
-import org.beangle.webmvc.entity.action.{EntityAction, ExportSupport}
+import org.beangle.web.action.view.View
+import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
 import org.openurp.code.edu.model.CourseTakeType
 import org.openurp.edu.grade.course.model.CourseGrade
 import org.openurp.std.creditbank.web.helper.CourseGradePropertyExtractor
@@ -58,9 +57,9 @@ class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGr
     hql1.append("exists (")
     hql1.append("  from ").append(classOf[Graduation].getName).append(" g")
     hql1.append(" where g.std = grade.std and g.educationResult != null")
-    hql1.append("   and g.graduateOn = :graduateOn")
+    hql1.append("   and g.graduateOn between :graduateBeginOn and :graduateEndOn")
     hql1.append(")")
-    builder.where(hql1.toString, session.graduateOn)
+    builder.where(hql1.toString, session.beginOn,session.endOn)
     builder.where("grade.courseTakeType.id != :courseTakeTypeId", CourseTakeType.Exemption)
     val hql2 = new StringBuilder
     hql2.append("not exists (")

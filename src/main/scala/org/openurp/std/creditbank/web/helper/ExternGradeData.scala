@@ -15,15 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.openurp.std.creditbank.web.action
+package org.openurp.std.creditbank.web.helper
 
-import org.beangle.cdi.bind.BindModule
+import org.openurp.base.edu.model.Course
+import org.openurp.edu.extern.model.ExternGrade
 
-class DefaultModule extends BindModule {
+class ExternGradeData(val grade: ExternGrade, val course: Course) {
 
-  override protected def binding(): Unit = {
-    bind(classOf[CourseAction])
-    bind(classOf[CertificateAction])
-    bind(classOf[ExternAction])
-  }
 }
