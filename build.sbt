@@ -3,7 +3,7 @@ import org.openurp.parent.Dependencies._
 import org.beangle.tools.sbt.Sas
 
 ThisBuild / organization := "org.openurp.std.creditbank"
-ThisBuild / version := "0.0.5"
+ThisBuild / version := "0.0.6-SNAPSHOT"
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
