@@ -41,5 +41,3 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(openurp_edu_api,openurp_std_api,beangle_ems_app),
     libraryDependencies ++= Seq(Sas.Tomcat % "test")
   )
-
-publish / skip := true
