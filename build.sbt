@@ -1,9 +1,8 @@
 import org.openurp.parent.Settings._
 import org.openurp.parent.Dependencies._
-import org.beangle.tools.sbt.Sas
 
 ThisBuild / organization := "org.openurp.std.creditbank"
-ThisBuild / version := "0.0.5"
+ThisBuild / version := "0.0.6"
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
@@ -24,22 +23,19 @@ ThisBuild / developers := List(
 ThisBuild / description := "OpenURP Std CreditBank"
 ThisBuild / homepage := Some(url("http://openurp.github.io/std-creditbank/index.html"))
 
-val apiVer = "0.23.4"
-val starterVer = "0.0.13"
-val baseVer = "0.1.22"
+val apiVer = "0.25.0"
+val starterVer = "0.0.19"
+val baseVer = "0.1.27"
 val openurp_edu_api = "org.openurp.edu" % "openurp-edu-api" % apiVer
 val openurp_std_api = "org.openurp.std" % "openurp-std-api" % apiVer
 val openurp_stater_web = "org.openurp.starter" % "openurp-starter-web" % starterVer
 val openurp_base_tag = "org.openurp.base" % "openurp-base-tag" % baseVer
 
 lazy val root = (project in file("."))
-  .enablePlugins(WarPlugin)
+  .enablePlugins(WarPlugin,UndertowPlugin)
   .settings(
-    name := "openurp-std-creditbank-adminapp",
+    name := "openurp-std-creditbank-webapp",
     common,
     libraryDependencies ++= Seq(openurp_stater_web,openurp_base_tag),
-    libraryDependencies ++= Seq(openurp_edu_api,openurp_std_api,beangle_ems_app),
-    libraryDependencies ++= Seq(Sas.Tomcat % "test")
+    libraryDependencies ++= Seq(openurp_edu_api,openurp_std_api,beangle_ems_app)
   )
-
-publish / skip := true

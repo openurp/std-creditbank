@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2005, The OpenURP Software.
+ * Copyright (C) 2014, The OpenURP Software.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter
 import org.beangle.commons.collection.Collections
 import org.beangle.data.dao.EntityDao
 import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
-import org.openurp.base.edu.model.Student
+import org.openurp.base.std.model.Student
 import org.openurp.edu.grade.course.model.CourseGrade
 import org.openurp.std.info.model.Graduation
 
