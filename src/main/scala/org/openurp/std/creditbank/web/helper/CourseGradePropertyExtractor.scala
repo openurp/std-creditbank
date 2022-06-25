@@ -23,7 +23,7 @@ import org.beangle.commons.collection.Collections
 import org.beangle.data.dao.EntityDao
 import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
 import org.openurp.base.std.model.Student
-import org.openurp.edu.grade.course.model.CourseGrade
+import org.openurp.edu.grade.model.CourseGrade
 import org.openurp.std.info.model.Graduation
 
 /**

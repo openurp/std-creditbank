@@ -22,7 +22,7 @@ import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
 import org.openurp.code.edu.model.CourseTakeType
-import org.openurp.edu.grade.course.model.CourseGrade
+import org.openurp.edu.grade.model.CourseGrade
 import org.openurp.std.creditbank.web.helper.CourseGradePropertyExtractor
 import org.openurp.std.graduation.model.GraduateSession
 import org.openurp.std.info.model.Graduation
