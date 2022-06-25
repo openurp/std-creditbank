@@ -2,7 +2,7 @@ import org.openurp.parent.Settings._
 import org.openurp.parent.Dependencies._
 
 ThisBuild / organization := "org.openurp.std.creditbank"
-ThisBuild / version := "0.0.8"
+ThisBuild / version := "0.0.9-SNAPSHOT"
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
