@@ -36,14 +36,14 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * <tr><td>7. 原办学机构</td><td>grade.subject.institutionName</td><td></td></tr>
  * <tr><td>8. 原教育层次代码</td><td>original.level.code</td><td></td></tr>
  * <tr><td>9. 原教育类别代码</td><td>original.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
- * <tr><td>10. 原学分</td><td>original.course.credits</td><td>以0代替</td></tr>
+ * <tr><td>10. 原学分</td><td>original.course.defaultCredits</td><td>以0代替</td></tr>
  * <tr><td>11. 原学时</td><td>original.course.creditHours</td><td>以0代替</td></tr>
  * <tr><td>12. 原成绩</td><td>grade.scoreText</td><td></td></tr>
  * <tr><td>13. 获得时间</td><td>grade.acquiredOn</td<td></td></tr>
  * <tr><td>14. 转换后教育层次代码</td><td>grade.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
  * <tr><td>15. 转换后课程代码</td><td>course.code</td><td></td></tr>
  * <tr><td>16. 转换后课程名称</td><td>course.name</td><td></td></tr>
- * <tr><td>17. 转换后学分</td><td>course.credits</td><td></td></tr>
+ * <tr><td>17. 转换后学分</td><td>course.defaultCredits</td><td></td></tr>
  * <tr><td>18. 转换时间</td><td>grade.convertOn</td><td></td></tr>
  * <tr><td>19. 转换后专业</td><td>grade.std.state.major.name</td><td></td></tr>
  * </tbody>

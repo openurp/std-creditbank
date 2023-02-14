@@ -43,7 +43,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * <tr><td>14. 转换后教育层次代码</td><td>grade.exchangeStudent.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
  * <tr><td>15. 转换后课程代码</td><td>course.code</td><td></td></tr>
  * <tr><td>16. 转换后课程名称</td><td>course.name</td><td></td></tr>
- * <tr><td>17. 转换后学分</td><td>course.credits</td><td></td></tr>
+ * <tr><td>17. 转换后学分</td><td>course.defaultCredits</td><td></td></tr>
  * <tr><td>18. 转换时间</td><td>grade.convertOn</td><td></td></tr>
  * <tr><td>19. 转换后专业名称</td><td>grade.exchangeStudent.std.state.major.name</td><td></td></tr>
  * </tbody>

@@ -2,7 +2,7 @@
 [@b.head/]
   [@b.grid items=externGrades var="externGrade"]
     [@b.gridbar]
-       bar.addItem("导出", action.exportData("grade.externStudent.std.user.name:姓名,grade.externStudent.std.person.code:身份证号,schoolCode:转换学校代码,original.course.code:原课程来源代码,grade.externStudent.majorName:原专业名称,grade.courseName:原课程名称,grade.externStudent.school.name:原办学机构,grade.externStudent.level.code:原教育层次代码,grade.externStudent.category.code:原教育类别代码,grade.credits:原学分,grade.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredOn:获得时间,grade.externStudent.std.level.code:转换后教育层次代码,course.code:转换后课程代码,course.name:转换后课程名称,course.credits:转换后学分,grade.convertOn:转换时间,grade.externStudent.std.state.major.name:转换后专业名称", "xls", "fileName=学分银行成绩-外校成绩"), "excel.png");
+       bar.addItem("导出", action.exportData("grade.externStudent.std.user.name:姓名,grade.externStudent.std.person.code:身份证号,schoolCode:转换学校代码,original.course.code:原课程来源代码,grade.externStudent.majorName:原专业名称,grade.courseName:原课程名称,grade.externStudent.school.name:原办学机构,grade.externStudent.level.code:原教育层次代码,grade.externStudent.category.code:原教育类别代码,grade.credits:原学分,grade.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredOn:获得时间,grade.externStudent.std.level.code:转换后教育层次代码,course.code:转换后课程代码,course.name:转换后课程名称,course.defaultCredits:转换后学分,grade.convertOn:转换时间,grade.externStudent.std.state.major.name:转换后专业名称", "xls", "fileName=学分银行成绩-外校成绩"), "excel.png");
     [/@]
     [@b.row]
       [@b.col title="序号" width="4%"]${externGrade_index+1}[/@]

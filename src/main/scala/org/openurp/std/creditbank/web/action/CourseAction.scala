@@ -17,15 +17,16 @@
 
 package org.openurp.std.creditbank.web.action
 
-import org.beangle.data.dao.OqlBuilder
+import org.beangle.data.dao.{EntityDao, OqlBuilder}
 import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
+import org.openurp.base.std.model.Graduate
 import org.openurp.code.edu.model.CourseTakeType
 import org.openurp.edu.grade.model.CourseGrade
 import org.openurp.std.creditbank.web.helper.CourseGradePropertyExtractor
-import org.openurp.std.graduation.model.GraduateSession
-import org.openurp.std.info.model.Graduation
+import org.openurp.std.graduation.model.GraduateBatch
+
 /**
  * 校内课程成绩学分银行查看和导出
  *
@@ -34,13 +35,15 @@ import org.openurp.std.info.model.Graduation
  */
 class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGrade] {
 
+  var entityDao: EntityDao = _
+
   def index(): View = {
-    val squery = OqlBuilder.from(classOf[GraduateSession], "s").orderBy("s.graduateOn desc")
-    put("sessions", entityDao.search(squery))
+    val squery = OqlBuilder.from(classOf[GraduateBatch], "s").orderBy("s.graduateOn desc")
+    put("batches", entityDao.search(squery))
     forward()
   }
 
-  def search: View = {
+  def search(): View = {
     val builder = getQueryBuilder
     builder.limit(getPageLimit)
     put("grades", entityDao.search(builder))
@@ -50,16 +53,16 @@ class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGr
   protected override def getQueryBuilder: OqlBuilder[CourseGrade] = {
     val builder = OqlBuilder.from(classOf[CourseGrade], "grade")
     populateConditions(builder)
-    val sessionId = longId("session")
-    val session = entityDao.get(classOf[GraduateSession], sessionId)
-    put("graduateSession", session)
+    val batchId = longId("batch")
+    val batch = entityDao.get(classOf[GraduateBatch], batchId)
+    put("graduateBatch", batch)
     val hql1 = new StringBuilder
     hql1.append("exists (")
-    hql1.append("  from ").append(classOf[Graduation].getName).append(" g")
-    hql1.append(" where g.std = grade.std and g.educationResult != null")
+    hql1.append("  from ").append(classOf[Graduate].getName).append(" g")
+    hql1.append(" where g.std = grade.std and g.result != null")
     hql1.append("   and g.graduateOn = :graduateOn")
     hql1.append(")")
-    builder.where(hql1.toString, session.graduateOn)
+    builder.where(hql1.toString, batch.graduateOn)
     builder.where("grade.courseTakeType.id != :courseTakeTypeId", CourseTakeType.Exemption)
     val hql2 = new StringBuilder
     hql2.append("not exists (")

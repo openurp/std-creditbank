@@ -17,24 +17,30 @@
 
 package org.openurp.std.creditbank.web.action
 
-import java.time.ZoneId
-import org.beangle.data.dao.OqlBuilder
+import org.beangle.data.dao.{EntityDao, OqlBuilder}
 import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
-import org.openurp.starter.edu.helper.ProjectSupport
+import org.openurp.base.model.Project
 import org.openurp.edu.extern.model.ExternGrade
+import org.openurp.starter.web.support.ProjectSupport
 import org.openurp.std.creditbank.web.helper.{ExternGradeData, ExternGradePropertyExtractor}
+
+import java.time.ZoneId
 
 class ExternAction extends EntityAction[ExternGrade] with ExportSupport[ExternGrade] with ProjectSupport {
 
-  def index: View = {
+  var entityDao: EntityDao = _
+
+  def index(): View = {
+    given project: Project = getProject
+
     put("departments", getDeparts)
-    put("project", getProject)
+    put("project", project)
     forward()
   }
 
-  def search: View = {
+  def search(): View = {
     val builder = getQueryBuilder
     builder.limit(getPageLimit)
     put("externGrades", entityDao.search(builder))
@@ -54,8 +60,9 @@ class ExternAction extends EntityAction[ExternGrade] with ExportSupport[ExternGr
   }
 
   override def configExport(setting: ExportSetting): Unit = {
-    val project = getProject
-    val schoolCode = project.properties.getOrElse("std.creditbank.schooCode", "")
+    given project: Project = getProject
+
+    val schoolCode = getProjectProperty("std.creditbank.schooCode", "")
     setting.context.extractor = new ExternGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>

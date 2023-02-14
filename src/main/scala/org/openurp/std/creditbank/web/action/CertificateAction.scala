@@ -17,27 +17,33 @@
 
 package org.openurp.std.creditbank.web.action
 
-import java.time.{LocalDate, ZoneId}
-import org.beangle.data.dao.OqlBuilder
+import org.beangle.data.dao.{EntityDao, OqlBuilder}
 import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
-import org.openurp.starter.edu.helper.ProjectSupport
+import org.openurp.base.model.Project
 import org.openurp.edu.extern.code.{CertificateCategory, CertificateSubject}
 import org.openurp.edu.extern.model.CertificateGrade
+import org.openurp.starter.web.support.ProjectSupport
 import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradePropertyExtractor}
+
+import java.time.{LocalDate, ZoneId}
 
 class CertificateAction extends EntityAction[CertificateGrade] with ExportSupport[CertificateGrade] with ProjectSupport {
 
-  def index: View = {
+  var entityDao: EntityDao = _
+
+  def index(): View = {
+    given project: Project = getProject
+
     put("certificateSubjects", getCodes(classOf[CertificateSubject]))
     put("certificateCategories", getCodes(classOf[CertificateCategory]))
     put("departments", getDeparts)
-    put("project", getProject)
+    put("project", project)
     forward()
   }
 
-  def search: View = {
+  def search(): View = {
     val builder = getQueryBuilder
     builder.limit(getPageLimit)
     put("certificateGrades", entityDao.search(builder))
@@ -64,8 +70,9 @@ class CertificateAction extends EntityAction[CertificateGrade] with ExportSuppor
   }
 
   override def configExport(setting: ExportSetting): Unit = {
-    val project = getProject
-    val schoolCode = project.properties.getOrElse("std.creditbank.schooCode", "")
+    given project: Project = getProject
+
+    val schoolCode = getProjectProperty("std.creditbank.schooCode", "")
     setting.context.extractor = new CertificateGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>

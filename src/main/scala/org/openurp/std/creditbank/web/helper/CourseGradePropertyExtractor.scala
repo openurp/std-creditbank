@@ -18,13 +18,11 @@
 package org.openurp.std.creditbank.web.helper
 
 import java.time.format.DateTimeFormatter
-
 import org.beangle.commons.collection.Collections
 import org.beangle.data.dao.EntityDao
 import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
-import org.openurp.base.std.model.Student
+import org.openurp.base.std.model.{Graduate, Student}
 import org.openurp.edu.grade.model.CourseGrade
-import org.openurp.std.info.model.Graduation
 
 /**
  * 转换属性如下：
@@ -53,7 +51,7 @@ import org.openurp.std.info.model.Graduation
  */
 class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultPropertyExtractor {
 
-  private val graduateData = Collections.newMap[Student, Graduation]
+  private val graduateData = Collections.newMap[Student, Graduate]
   private val yearMonth = DateTimeFormatter.ofPattern("YYYYMM")
 
   override def getPropertyValue(target: Object, property: String): Any = {
@@ -64,7 +62,7 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
       val graduation = graduateData.get(grade.std) match {
         case g@Some(_) => g
         case None =>
-          val rs = entityDao.findBy(classOf[Graduation], "std", List(grade.std)).headOption
+          val rs = entityDao.findBy(classOf[Graduate], "std", List(grade.std)).headOption
           rs foreach { r => graduateData.put(grade.std, r) }
           rs
       }
@@ -73,14 +71,14 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
         case Some(g) =>
           property match {
             case "graduation.year" => g.graduateOn.getYear
-            case "graduation.educationResult.code" => g.educationResult.code
+            case "graduation.educationResult.code" => g.result.code
             case "graduation.season" => if (g.graduateOn.getMonth.getValue <= 6) "50" else "51"
           }
       }
     } else if (property == "remark") {
       ""
     } else if (property == "course.credits") {
-      FloatTrunc.trunc(grade.course.credits)
+      FloatTrunc.trunc(grade.course.defaultCredits)
     } else {
       super.getPropertyValue(target, property)
     }
