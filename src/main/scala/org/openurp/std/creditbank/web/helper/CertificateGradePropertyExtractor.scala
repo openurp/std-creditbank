@@ -27,7 +27,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * <table  class="striped" style="text-align:left">
  * <thead><tr><td>属性</td><td>标题</td><td>备注</td></tr></thead>
  * <tbody>
- * <tr><td>1. 姓名</td><td>grade.std.user.name</td><td></td></tr>
+ * <tr><td>1. 姓名</td><td>grade.std.name</td><td></td></tr>
  * <tr><td>2. 身份证号</td><td>grade.std.person.code</td><td></td></tr>
  * <tr><td>3. 转换学校代码</td><td>schoolCode</td><td>本学校所在的学分银行分配的代码</td></tr>
  * <tr><td>4. 原课程来源代码</td><td>original.course.code</td><td>01 课程类 02 证书类</td></tr>
@@ -59,7 +59,7 @@ class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPrope
       case "original.course.code" => "02"
       case "original.level.code" => "20" //由于获取证书的层次未知，目前暂定20
       case "original.project.category.code" => data.grade.std.project.category.code
-      case "original.course.credits" => "0"
+      case "original.course.defaultCredits" => "0"
       case "original.course.creditHours" => "0"
       case "grade.major.name" => "待补"
       case "schoolCode" => schoolCode

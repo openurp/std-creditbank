@@ -27,7 +27,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  * <table  class="striped" style="text-align:left">
  * <thead><tr><td>属性</td><td>标题</td><td>备注</td></tr></thead>
  * <tbody>
- * <tr><td>1. 姓名</td><td>grade.exchangeStudent.std.user.name</td><td></td></tr>
+ * <tr><td>1. 姓名</td><td>grade.exchangeStudent.std.name</td><td></td></tr>
  * <tr><td>2. 身份证号</td><td>grade.exchangeStudent.std.person.code</td><td></td></tr>
  * <tr><td>3. 转换学校代码</td><td>schoolCode</td><td></td></tr>
  * <tr><td>4. 原课程来源代码</td><td>original.course.code</td><td>01 课程类 02 证书类</td></tr>

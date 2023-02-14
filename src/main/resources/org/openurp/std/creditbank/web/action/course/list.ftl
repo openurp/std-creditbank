@@ -2,13 +2,13 @@
 [@b.head/]
   [@b.grid items=grades var="grade"]
     [@b.gridbar]
-      bar.addItem("导出", action.exportData("std.user.code:学号,std.user.name:姓名,std.person.code:身份证号,std.state.major.name:专业名称,course.name:课程名称,std.level.code:教育层次代码,std.project.category.code:教育类别代码,course.defaultCredits:学分,course.creditHours:学时,scoreText:成绩,semester.beginOn:获得时间,graduation.year:届别,graduation.educationResult.code:毕业结业肄业,graduation.season:毕业季,remark:备注", "xls", "fileName=本校${graduateBatch.name}批次学分银行成绩"), "excel.png");
+      bar.addItem("导出", action.exportData("std.code:学号,std.name:姓名,std.person.code:身份证号,std.state.major.name:专业名称,course.name:课程名称,std.level.code:教育层次代码,std.project.category.code:教育类别代码,course.defaultCredits:学分,course.creditHours:学时,scoreText:成绩,semester.beginOn:获得时间,graduation.year:届别,graduation.educationResult.code:毕业结业肄业,graduation.season:毕业季,remark:备注", "xls", "fileName=本校${graduateBatch.name}批次学分银行成绩"), "excel.png");
     [/@]
     [@b.row]
       [@b.col title="序号" width="4%"]${grade_index+1}[/@]
-      [@b.col title="学号" property="std.user.code" width="11%"]<span style="font-size:0.7em">${(grade.std.user.code)!}</span>[/@]
+      [@b.col title="学号" property="std.code" width="11%"]<span style="font-size:0.7em">${(grade.std.code)!}</span>[/@]
       [@b.col title="身份证号" property="std.person.code" width="13%"]<span style="font-size:0.7em">${(grade.std.person.code)!}</span>[/@]
-      [@b.col title="姓名" property="std.user.name" width="8%"/]
+      [@b.col title="姓名" property="std.name" width="8%"/]
       [@b.col title="专业" property="std.state.major.name" width="10%"/]
       [@b.col title="教育层次" property="std.level.name" width="7%"/]
       [@b.col title="课程" property="course.name" width="23%"]${grade.course.name}[/@]
