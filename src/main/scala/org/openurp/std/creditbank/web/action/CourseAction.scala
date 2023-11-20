@@ -18,7 +18,8 @@
 package org.openurp.std.creditbank.web.action
 
 import org.beangle.data.dao.{EntityDao, OqlBuilder}
-import org.beangle.data.transfer.exporter.ExportSetting
+import org.beangle.data.transfer.exporter.ExportContext
+import org.beangle.web.action.support.ActionSupport
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
 import org.openurp.base.std.model.Graduate
@@ -33,7 +34,7 @@ import org.openurp.std.graduation.model.GraduateBatch
  * @author zhouqi 2019年10月11日
  * @author duantihua 2020年11月24日
  */
-class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGrade] {
+class CourseAction extends ActionSupport, EntityAction[CourseGrade], ExportSupport[CourseGrade] {
 
   var entityDao: EntityDao = _
 
@@ -53,7 +54,7 @@ class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGr
   protected override def getQueryBuilder: OqlBuilder[CourseGrade] = {
     val builder = OqlBuilder.from(classOf[CourseGrade], "grade")
     populateConditions(builder)
-    val batchId = longId("batch")
+    val batchId = getLongId("batch")
     val batch = entityDao.get(classOf[GraduateBatch], batchId)
     put("graduateBatch", batch)
     val hql1 = new StringBuilder
@@ -77,6 +78,7 @@ class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGr
     hql2.append("       )")
     hql2.append(")")
     builder.where(hql2.toString)
+
     builder.where("grade.passed=true")
     val orderBy = get("orderBy") match {
       case Some(o) => o + ",grade.id"
@@ -86,8 +88,8 @@ class CourseAction extends EntityAction[CourseGrade] with ExportSupport[CourseGr
     builder
   }
 
-  override def configExport(setting: ExportSetting): Unit = {
-    setting.context.extractor = new CourseGradePropertyExtractor(entityDao)
-    setting.context.put("items", entityDao.search(getQueryBuilder.limit(null)))
+  override def configExport(context: ExportContext): Unit = {
+    context.extractor = new CourseGradePropertyExtractor(entityDao)
+    context.put("items", entityDao.search(getQueryBuilder.limit(null)))
   }
 }

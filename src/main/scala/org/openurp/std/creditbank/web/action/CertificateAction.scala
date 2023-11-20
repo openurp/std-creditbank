@@ -18,7 +18,8 @@
 package org.openurp.std.creditbank.web.action
 
 import org.beangle.data.dao.{EntityDao, OqlBuilder}
-import org.beangle.data.transfer.exporter.ExportSetting
+import org.beangle.data.transfer.exporter.ExportContext
+import org.beangle.web.action.support.ActionSupport
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
 import org.openurp.base.model.Project
@@ -29,7 +30,7 @@ import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradeP
 
 import java.time.{LocalDate, ZoneId}
 
-class CertificateAction extends EntityAction[CertificateGrade] with ExportSupport[CertificateGrade] with ProjectSupport {
+class CertificateAction extends ActionSupport, EntityAction[CertificateGrade], ExportSupport[CertificateGrade], ProjectSupport {
 
   var entityDao: EntityDao = _
 
@@ -69,15 +70,15 @@ class CertificateAction extends EntityAction[CertificateGrade] with ExportSuppor
     builder
   }
 
-  override def configExport(setting: ExportSetting): Unit = {
+  override def configExport(context: ExportContext): Unit = {
     given project: Project = getProject
 
     val schoolCode = getProjectProperty("std.creditbank.schooCode", "")
-    setting.context.extractor = new CertificateGradePropertyExtractor(schoolCode)
+    context.extractor = new CertificateGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>
-      g.courses map (c => new CertificateData(g, c))
+      g.exempts map (c => new CertificateData(g, c))
     }
-    setting.context.put("items", rs)
+    context.put("items", rs)
   }
 }
