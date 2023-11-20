@@ -16,8 +16,8 @@
       [@b.col title="原学分" property="credits" width="6%"/]
       [@b.col title="获得时间" property="acquiredOn" width="8%"]${externGrade.acquiredOn?string("yyyyMM")}[/@]
       [@b.col title="转换后课程" sortable="false" width="21%"]
-        [#if externGrade.courses?size >0 ]
-        <span style="font-size:0.8em">[#list externGrade.courses as c]${c.name} ${c.defaultCredits}分 [#if c_has_next]<br>[/#if][/#list]</span>
+        [#if externGrade.exempts?size >0 ]
+        <span style="font-size:0.8em">[#list externGrade.exempts as c]${c.name} ${c.defaultCredits}分 [#if c_has_next]<br>[/#if][/#list]</span>
         [#else]--[/#if]
       [/@]
       [@b.col title="转换时间" property="updatedAt" width="8%"]${externGrade.updatedAt?string("yyyyMM")}[/@]

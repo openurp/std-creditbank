@@ -66,7 +66,7 @@ class CertificateAction extends ActionSupport, EntityAction[CertificateGrade], E
     getDate("toAt") foreach { toAt =>
       builder.where(" certificateGrade.updatedAt <= :toAt", toAt.plusDays(1).atTime(0, 0, 0).atZone(ZoneId.systemDefault()).toInstant)
     }
-    builder.where("exists (from certificateGrade.courses ec)")
+    builder.where("exists (from certificateGrade.exempts ec)")
     builder
   }
 

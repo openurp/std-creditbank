@@ -56,7 +56,7 @@ class ExternAction extends ActionSupport, EntityAction[ExternGrade], ExportSuppo
     getDate("toAt") foreach { toAt =>
       builder.where(" externGrade.updatedAt <= :toAt", toAt.plusDays(1).atTime(0, 0, 0).atZone(ZoneId.systemDefault()).toInstant)
     }
-    builder.where("exists (from externGrade.courses ec)")
+    builder.where("exists (from externGrade.exempts ec)")
     builder
   }
 
