@@ -51,7 +51,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  */
 class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyExtractor {
 
-  private val yearMonth = DateTimeFormatter.ofPattern("YYYYMM")
+  private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
 
   override def getPropertyValue(target: Object, property: String): Any = {
     val data = target.asInstanceOf[ExternGradeData]

@@ -52,7 +52,7 @@ import org.openurp.edu.grade.model.CourseGrade
 class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultPropertyExtractor {
 
   private val graduateData = Collections.newMap[Student, Graduate]
-  private val yearMonth = DateTimeFormatter.ofPattern("YYYYMM")
+  private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
 
   override def getPropertyValue(target: Object, property: String): Any = {
     val grade = target.asInstanceOf[CourseGrade]

@@ -17,10 +17,10 @@
 
 package org.openurp.std.creditbank.web.helper
 
-import java.time.format.DateTimeFormatter
-import java.time.{LocalDate, ZoneId}
-
 import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
+
+import java.time.format.DateTimeFormatter
+import java.time.{LocalDate, YearMonth, ZoneId}
 
 /** 证书成绩输出辅助类
  * 转换属性如下：
@@ -51,7 +51,7 @@ import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
  */
 class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPropertyExtractor {
 
-  private val yearMonth = DateTimeFormatter.ofPattern("YYYYMM")
+  private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
 
   override def getPropertyValue(target: Object, property: String): Any = {
     val data = target.asInstanceOf[CertificateData]
