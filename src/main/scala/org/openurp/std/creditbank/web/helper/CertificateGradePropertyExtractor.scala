@@ -32,8 +32,8 @@ import java.time.{LocalDate, YearMonth, ZoneId}
  * <tr><td>3. 转换学校代码</td><td>schoolCode</td><td>本学校所在的学分银行分配的代码</td></tr>
  * <tr><td>4. 原课程来源代码</td><td>original.course.code</td><td>01 课程类 02 证书类</td></tr>
  * <tr><td>5. 原专业名称</td><td>grade.major.name</td><td>不涉及专业,待补</td></tr>
- * <tr><td>6. 原课程名称</td><td>grade.subject.name</td><td></td></tr>
- * <tr><td>7. 原办学机构</td><td>grade.subject.institutionName</td><td></td></tr>
+ * <tr><td>6. 原课程名称</td><td>grade.certificate.name</td><td></td></tr>
+ * <tr><td>7. 原办学机构</td><td>grade.certificate.institutionName</td><td></td></tr>
  * <tr><td>8. 原教育层次代码</td><td>original.level.code</td><td></td></tr>
  * <tr><td>9. 原教育类别代码</td><td>original.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
  * <tr><td>10. 原学分</td><td>original.course.defaultCredits</td><td>以0代替</td></tr>

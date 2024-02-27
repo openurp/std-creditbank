@@ -23,7 +23,7 @@ import org.beangle.web.action.support.ActionSupport
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
 import org.openurp.base.model.Project
-import org.openurp.edu.extern.code.{CertificateCategory, CertificateSubject}
+import org.openurp.code.edu.model.{Certificate, CertificateCategory}
 import org.openurp.edu.extern.model.CertificateGrade
 import org.openurp.starter.web.support.ProjectSupport
 import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradePropertyExtractor}
@@ -37,7 +37,7 @@ class CertificateAction extends ActionSupport, EntityAction[CertificateGrade], E
   def index(): View = {
     given project: Project = getProject
 
-    put("certificateSubjects", getCodes(classOf[CertificateSubject]))
+    put("certificates", getCodes(classOf[Certificate]))
     put("certificateCategories", getCodes(classOf[CertificateCategory]))
     put("departments", getDeparts)
     put("project", project)
@@ -73,7 +73,7 @@ class CertificateAction extends ActionSupport, EntityAction[CertificateGrade], E
   override def configExport(context: ExportContext): Unit = {
     given project: Project = getProject
 
-    val schoolCode = getProjectProperty("std.creditbank.schooCode", "")
+    val schoolCode = getConfig("std.creditbank.schooCode", "")
     context.extractor = new CertificateGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>

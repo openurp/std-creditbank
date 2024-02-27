@@ -63,7 +63,7 @@ class ExternAction extends ActionSupport, EntityAction[ExternGrade], ExportSuppo
   override def configExport(context: ExportContext): Unit = {
     given project: Project = getProject
 
-    val schoolCode = getProjectProperty("std.creditbank.schooCode", "")
+    val schoolCode = getConfig("std.creditbank.schooCode", "")
     context.extractor = new ExternGradePropertyExtractor(schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>

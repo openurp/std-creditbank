@@ -17,12 +17,13 @@
 
 package org.openurp.std.creditbank.web.helper
 
-import java.time.format.DateTimeFormatter
 import org.beangle.commons.collection.Collections
 import org.beangle.data.dao.EntityDao
 import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
 import org.openurp.base.std.model.{Graduate, Student}
 import org.openurp.edu.grade.model.CourseGrade
+
+import java.time.format.DateTimeFormatter
 
 /**
  * 转换属性如下：
@@ -70,9 +71,11 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
         case None => ""
         case Some(g) =>
           property match {
-            case "graduation.year" => g.graduateOn.getYear
+            case "graduation.year" => g.graduateOn.map(_.getYear.toString).getOrElse("")
             case "graduation.educationResult.code" => g.result.code
-            case "graduation.season" => if (g.graduateOn.getMonth.getValue <= 6) "50" else "51"
+            case "graduation.season" =>
+              if g.graduateOn.isEmpty then ""
+              else if (g.graduateOn.get.getMonth.getValue <= 6) "50" else "51"
           }
       }
     } else if (property == "remark") {
