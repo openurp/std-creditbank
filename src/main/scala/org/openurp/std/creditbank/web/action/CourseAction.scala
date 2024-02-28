@@ -60,7 +60,7 @@ class CourseAction extends ActionSupport, EntityAction[CourseGrade], ExportSuppo
     val hql1 = new StringBuilder
     hql1.append("exists (")
     hql1.append("  from ").append(classOf[Graduate].getName).append(" g")
-    hql1.append(" where g.std = grade.std and g.result != null")
+    hql1.append(" where g.std = grade.std and g.result is not null")
     hql1.append("   and g.graduateOn = :graduateOn")
     hql1.append(")")
     builder.where(hql1.toString, batch.graduateOn)

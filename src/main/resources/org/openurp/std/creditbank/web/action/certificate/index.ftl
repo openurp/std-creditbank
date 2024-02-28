@@ -12,9 +12,9 @@
                 [@b.textfield name="certificateGrade.std.state.squad.name" label="班级名称"/]
                 [@b.select name="certificateGrade.certificate.category.id" id="categoryId" label="考试类型" items=certificateCategories empty="..."/]
                 [@b.select name="certificateGrade.certificate.id" id="certificateId" label="科目" items=certificates empty="..." /]
-                [@b.datepicker label="考试日期" name="certificateGrade.acquiredOn"/]
-                [@b.datepicker id="fromAt" label="录入从" name="fromAt" format="yyyy-MM-dd" maxDate="#F{$dp.$D(\\'toAt\\')}"/]
-                [@b.datepicker id="toAt" label="录入到" name="toAt" format="yyyy-MM-dd" minDate="#F{$dp.$D(\\'fromAt\\')}"/]
+                [@b.date label="考试日期" name="certificateGrade.acquiredOn"/]
+                [@b.date id="fromAt" label="录入从" name="fromAt" format="yyyy-MM-dd" maxDate="#F{$dp.$D(\\'toAt\\')}"/]
+                [@b.date id="toAt" label="录入到" name="toAt" format="yyyy-MM-dd" minDate="#F{$dp.$D(\\'fromAt\\')}"/]
             [/@]
   </div>
   <div class="search-list">
