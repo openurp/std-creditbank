@@ -20,7 +20,7 @@ package org.openurp.std.creditbank.web.helper
 import java.time.format.DateTimeFormatter
 import java.time.{LocalDate, ZoneId}
 
-import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
+import org.beangle.commons.bean.DefaultPropertyExtractor
 
 /** 交换成绩输出辅助类
  * 转换属性如下：
@@ -53,7 +53,7 @@ class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyEx
 
   private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
 
-  override def getPropertyValue(target: Object, property: String): Any = {
+  override def get(target: Object, property: String): Any = {
     val data = target.asInstanceOf[ExternGradeData]
     property match {
       case "original.course.code" => "01"
@@ -62,7 +62,7 @@ class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyEx
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
       case "grade.acquiredOn" => data.grade.acquiredOn.format(yearMonth)
       case "schoolCode" => schoolCode
-      case _ => super.getPropertyValue(target, property)
+      case _ => super.get(target, property)
     }
   }
 }

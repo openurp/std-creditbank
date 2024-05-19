@@ -17,9 +17,9 @@
 
 package org.openurp.std.creditbank.web.helper
 
+import org.beangle.commons.bean.DefaultPropertyExtractor
 import org.beangle.commons.collection.Collections
 import org.beangle.data.dao.EntityDao
-import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
 import org.openurp.base.std.model.{Graduate, Student}
 import org.openurp.edu.grade.model.CourseGrade
 
@@ -55,7 +55,7 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
   private val graduateData = Collections.newMap[Student, Graduate]
   private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
 
-  override def getPropertyValue(target: Object, property: String): Any = {
+  override def get(target: Object, property: String): Any = {
     val grade = target.asInstanceOf[CourseGrade]
     if ("semester.beginOn".equals(property)) {
       grade.semester.endOn.format(yearMonth)
@@ -83,7 +83,7 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
     } else if (property == "course.defaultCredits") {
       FloatTrunc.trunc(grade.course.defaultCredits)
     } else {
-      super.getPropertyValue(target, property)
+      super.get(target, property)
     }
   }
 }

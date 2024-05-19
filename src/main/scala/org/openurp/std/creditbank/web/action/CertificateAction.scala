@@ -18,7 +18,7 @@
 package org.openurp.std.creditbank.web.action
 
 import org.beangle.data.dao.{EntityDao, OqlBuilder}
-import org.beangle.data.transfer.exporter.ExportContext
+import org.beangle.doc.transfer.exporter.ExportContext
 import org.beangle.web.action.support.ActionSupport
 import org.beangle.web.action.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
@@ -28,7 +28,7 @@ import org.openurp.edu.extern.model.CertificateGrade
 import org.openurp.starter.web.support.ProjectSupport
 import org.openurp.std.creditbank.web.helper.{CertificateData, CertificateGradePropertyExtractor}
 
-import java.time.{LocalDate, ZoneId}
+import java.time.ZoneId
 
 class CertificateAction extends ActionSupport, EntityAction[CertificateGrade], ExportSupport[CertificateGrade], ProjectSupport {
 

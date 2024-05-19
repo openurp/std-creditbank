@@ -17,7 +17,7 @@
 
 package org.openurp.std.creditbank.web.helper
 
-import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
+import org.beangle.commons.bean.DefaultPropertyExtractor
 
 import java.time.format.DateTimeFormatter
 import java.time.{LocalDate, YearMonth, ZoneId}
@@ -53,7 +53,7 @@ class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPrope
 
   private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
 
-  override def getPropertyValue(target: Object, property: String): Any = {
+  override def get(target: Object, property: String): Any = {
     val data = target.asInstanceOf[CertificateData]
     property match {
       case "original.course.code" => "02"
@@ -65,7 +65,7 @@ class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPrope
       case "schoolCode" => schoolCode
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
       case "grade.acquiredOn" => data.grade.acquiredOn.format(yearMonth)
-      case _ => super.getPropertyValue(target, property)
+      case _ => super.get(target, property)
     }
   }
 }
