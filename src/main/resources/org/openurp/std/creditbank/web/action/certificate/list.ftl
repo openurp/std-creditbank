@@ -22,7 +22,7 @@
           </span>
         [/@]
         [@b.col property="std.state.department.name" title="院系"  width="15%"/]
-        [@b.col property="certificate" title="证书编号"  width="15%"]${(certificateGrade.certificate)!"--"}[/@]
+        [@b.col property="certificateNo" title="证书编号"  width="15%"]${(certificateGrade.certificateNo)!"--"}[/@]
         [@b.col property="updatedAt" title="录入时间"  width="12%"]${(certificateGrade.updatedAt?string("yy-MM-dd HH:mm"))!"--"}[/@]
         [@b.col title="免修" sortable="false"  width="40px"][#if certificateGrade.exempts?size>0]${certificateGrade.exempts?size}[/#if][/@]
     [/@]
