@@ -23,9 +23,9 @@ ThisBuild / developers := List(
 ThisBuild / description := "OpenURP Std CreditBank"
 ThisBuild / homepage := Some(url("http://openurp.github.io/std-creditbank/index.html"))
 
-val apiVer = "0.40.2"
-val starterVer = "0.3.35"
-val baseVer = "0.4.31"
+val apiVer = "0.42.0"
+val starterVer = "0.3.54"
+val baseVer = "0.4.48"
 val openurp_edu_api = "org.openurp.edu" % "openurp-edu-api" % apiVer
 val openurp_std_api = "org.openurp.std" % "openurp-std-api" % apiVer
 val openurp_stater_web = "org.openurp.starter" % "openurp-starter-web" % starterVer
@@ -37,5 +37,5 @@ lazy val root = (project in file("."))
     name := "openurp-std-creditbank-webapp",
     common,
     libraryDependencies ++= Seq(openurp_stater_web,openurp_base_tag),
-    libraryDependencies ++= Seq(openurp_edu_api,openurp_std_api,beangle_ems_app)
+    libraryDependencies ++= Seq(openurp_edu_api,openurp_std_api)
   )

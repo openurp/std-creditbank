@@ -19,8 +19,8 @@ package org.openurp.std.creditbank.web.action
 
 import org.beangle.data.dao.{EntityDao, OqlBuilder}
 import org.beangle.doc.transfer.exporter.ExportContext
-import org.beangle.web.action.support.ActionSupport
-import org.beangle.web.action.view.View
+import org.beangle.webmvc.support.ActionSupport
+import org.beangle.webmvc.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
 import org.openurp.base.std.model.Graduate
 import org.openurp.code.edu.model.CourseTakeType
