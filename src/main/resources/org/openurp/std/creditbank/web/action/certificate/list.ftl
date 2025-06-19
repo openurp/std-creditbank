@@ -6,7 +6,7 @@
                          "original.course.code:原课程来源代码,grade.major.name:原专业名称,grade.certificate.name:原课程名称,"+
                          "grade.certificate.institutionName:原办学机构,original.level.code:原教育层次代码,"+
                          "original.project.category.code:原教育类别代码,original.course.defaultCredits:原学分,"+
-                         "original.course.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredOn:获得时间,"+
+                         "original.course.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredIn:获得时间,"+
                          "grade.std.level.code:转换后教育层次代码,course.code:转换后课程代码,course.name:转换后课程名称,"+
                          "course.defaultCredits:转换后学分,grade.convertOn:转换时间,grade.std.state.major.name:转换后专业",
                           "xls", "fileName=学分银行成绩-证书成绩"), "excel.png");

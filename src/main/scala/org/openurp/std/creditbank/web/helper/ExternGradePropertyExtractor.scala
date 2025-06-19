@@ -39,7 +39,7 @@ import org.beangle.commons.bean.DefaultPropertyExtractor
  * <tr><td>10. 原学分</td><td>grade.credits</td><td></td></tr>
  * <tr><td>11. 原学时</td><td>grade.creditHours</td><td></td></tr>
  * <tr><td>12. 原成绩</td><td>grade.scoreText</td><td></td></tr>
- * <tr><td>13. 获得时间</td><td>grade.acquiredOn</td><td></td></tr>
+ * <tr><td>13. 获得时间</td><td>grade.acquiredIn</td><td></td></tr>
  * <tr><td>14. 转换后教育层次代码</td><td>grade.exchangeStudent.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
  * <tr><td>15. 转换后课程代码</td><td>course.code</td><td></td></tr>
  * <tr><td>16. 转换后课程名称</td><td>course.name</td><td></td></tr>
@@ -60,7 +60,7 @@ class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyEx
       case "grade.credits" => FloatTrunc.trunc(data.grade.credits)
       case "grade.creditHours" => "0"
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
-      case "grade.acquiredOn" => data.grade.acquiredOn.format(yearMonth)
+      case "grade.acquiredIn" => data.grade.acquiredIn.format(yearMonth)
       case "schoolCode" => schoolCode
       case _ => super.get(target, property)
     }

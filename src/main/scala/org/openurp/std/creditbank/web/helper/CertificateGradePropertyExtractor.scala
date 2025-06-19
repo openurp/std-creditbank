@@ -39,7 +39,7 @@ import java.time.{LocalDate, YearMonth, ZoneId}
  * <tr><td>10. 原学分</td><td>original.course.defaultCredits</td><td>以0代替</td></tr>
  * <tr><td>11. 原学时</td><td>original.course.creditHours</td><td>以0代替</td></tr>
  * <tr><td>12. 原成绩</td><td>grade.scoreText</td><td></td></tr>
- * <tr><td>13. 获得时间</td><td>grade.acquiredOn</td<td></td></tr>
+ * <tr><td>13. 获得时间</td><td>grade.acquiredIn</td<td></td></tr>
  * <tr><td>14. 转换后教育层次代码</td><td>grade.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
  * <tr><td>15. 转换后课程代码</td><td>course.code</td><td></td></tr>
  * <tr><td>16. 转换后课程名称</td><td>course.name</td><td></td></tr>
@@ -64,7 +64,7 @@ class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPrope
       case "grade.major.name" => "待补"
       case "schoolCode" => schoolCode
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
-      case "grade.acquiredOn" => data.grade.acquiredOn.format(yearMonth)
+      case "grade.acquiredIn" => data.grade.acquiredIn.format(yearMonth)
       case _ => super.get(target, property)
     }
   }
