@@ -2,7 +2,7 @@ import org.openurp.parent.Settings._
 import org.openurp.parent.Dependencies._
 
 ThisBuild / organization := "org.openurp.std.creditbank"
-ThisBuild / version := "0.0.19-SNAPSHOT"
+ThisBuild / version := "0.0.19"
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
@@ -23,9 +23,9 @@ ThisBuild / developers := List(
 ThisBuild / description := "OpenURP Std CreditBank"
 ThisBuild / homepage := Some(url("http://openurp.github.io/std-creditbank/index.html"))
 
-val apiVer = "0.44.0"
-val starterVer = "0.3.58"
-val baseVer = "0.4.51"
+val apiVer = "0.46.0"
+val starterVer = "0.4.0"
+val baseVer = "0.4.55"
 val openurp_edu_api = "org.openurp.edu" % "openurp-edu-api" % apiVer
 val openurp_std_api = "org.openurp.std" % "openurp-std-api" % apiVer
 val openurp_stater_web = "org.openurp.starter" % "openurp-starter-web" % starterVer
