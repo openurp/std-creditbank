@@ -30,21 +30,21 @@ import java.time.format.DateTimeFormatter
  * <table  class="striped" style="text-align:left">
  * <thead><tr><td>属性</td><td>标题</td><td>备注</td></tr></thead>
  * <tbody>
- * <tr><td>1. 学号</td><td>std.code</td><td></td></tr>
- * <tr><td>2. 姓名</td><td>std.name</td><td></td></tr>
- * <tr><td>3. 身份证号</td><td>std.person.code</td><td></td></tr>
- * <tr><td>4. 专业名称</td><td>std.state.major.name</td><td></td></tr>
- * <tr><td>5. 课程名称</td><td>course.name</td><td></td></tr>
- * <tr><td>6. 教育层次代码</td><td>std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
- * <tr><td>7. 教育类别代码</td><td>std.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
- * <tr><td>8. 学分</td><td>course.defaultCredits</td><td></td></tr>
- * <tr><td>9. 学时</td><td>course.creditHours</td><td></td></tr>
- * <tr><td>10. 成绩</td><td>scoreText</td><td></td></tr>
- * <tr><td>11. 获得时间</td><td>semester.beginOn</td><td></td></tr>
- * <tr><td>12. 届别</td><td>graduation.year</td><td></td></tr>
- * <tr><td>13. 毕业结业肄业</td><td>graduation.educationResult.code</td><td>40 毕业,41 结业</td></tr>
- * <tr><td>14. 毕业季</td><td>graduation.season</td><td>50 春,51 秋</td></tr>
- * <tr><td>15. 备注</td><td>remark</td><td></td></tr>
+ * <tr><td>1. 姓名</td><td>std.name</td><td></td></tr>
+ * <tr><td>2. 身份证号</td><td>std.person.code</td><td></td></tr>
+ * <tr><td>3. 专业名称</td><td>std.state.major.name</td><td></td></tr>
+ * <tr><td>4. 课程名称</td><td>course.name</td><td></td></tr>
+ * <tr><td>5. 教育层次代码</td><td>std.level.code</td><td>85 本科 86 专科 783 专升本 784 高起本</td></tr>
+ * <tr><td>6. 教育类别代码</td><td>std.project.category.code</td><td>321 成人 322 普高 1221 网络 1381 中职 1421 自考</td></tr>
+ * <tr><td>7. 学分</td><td>course.defaultCredits</td><td></td></tr>
+ * <tr><td>8. 学时</td><td>course.creditHours</td><td></td></tr>
+ * <tr><td>9. 成绩</td><td>scoreText</td><td></td></tr>
+ * <tr><td>10. 获得时间</td><td>semester.beginOn</td><td></td></tr>
+ * <tr><td>11. 届别</td><td>graduation.year</td><td></td></tr>
+ * <tr><td>12. 毕业结业肄业</td><td>graduation.educationResult.code</td><td>1261 毕业,1262 结业</td></tr>
+ * <tr><td>13. 毕业季</td><td>graduation.season</td><td>1321 春,1322 秋</td></tr>
+ * <tr><td>14. 备注</td><td>remark</td><td></td></tr>
+ * <tr><td>15. 学号</td><td>std.code</td><td></td></tr>
  * </tbody>
  * </table>
  *
@@ -75,7 +75,7 @@ class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultProperty
             case "graduation.educationResult.code" => g.result.code
             case "graduation.season" =>
               if g.graduateOn.isEmpty then ""
-              else if (g.graduateOn.get.getMonth.getValue <= 6) "50" else "51"
+              else if (g.graduateOn.get.getMonth.getValue <= 6) "1321" else "1322"
           }
       }
     } else if (property == "remark") {
