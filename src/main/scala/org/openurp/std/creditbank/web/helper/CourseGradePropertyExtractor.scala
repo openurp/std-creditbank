@@ -18,9 +18,7 @@
 package org.openurp.std.creditbank.web.helper
 
 import org.beangle.commons.bean.DefaultPropertyExtractor
-import org.beangle.commons.collection.Collections
 import org.beangle.data.dao.EntityDao
-import org.openurp.base.std.model.{Graduate, Student}
 import org.openurp.edu.grade.model.CourseGrade
 
 import java.time.format.DateTimeFormatter
@@ -40,9 +38,9 @@ import java.time.format.DateTimeFormatter
  * <tr><td>8. 学时</td><td>course.creditHours</td><td></td></tr>
  * <tr><td>9. 成绩</td><td>scoreText</td><td></td></tr>
  * <tr><td>10. 获得时间</td><td>semester.beginOn</td><td></td></tr>
- * <tr><td>11. 届别</td><td>graduation.year</td><td></td></tr>
- * <tr><td>12. 毕业结业肄业</td><td>graduation.educationResult.code</td><td>1261 毕业,1262 结业</td></tr>
- * <tr><td>13. 毕业季</td><td>graduation.season</td><td>1321 春,1322 秋</td></tr>
+ * <tr><td>11. 届别</td><td>graduate.year</td><td></td></tr>
+ * <tr><td>12. 毕业结业肄业</td><td>graduate.educationResult.code</td><td>1261 毕业,1262 结业,1690在校</td></tr>
+ * <tr><td>13. 毕业季</td><td>graduate.season</td><td>1321 春,1322 秋</td></tr>
  * <tr><td>14. 备注</td><td>remark</td><td></td></tr>
  * <tr><td>15. 学号</td><td>std.code</td><td></td></tr>
  * </tbody>
@@ -52,32 +50,15 @@ import java.time.format.DateTimeFormatter
  */
 class CourseGradePropertyExtractor(entityDao: EntityDao) extends DefaultPropertyExtractor {
 
-  private val graduateData = Collections.newMap[Student, Graduate]
   private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
+  private val graduateHelper = new GraduateHelper(entityDao)
 
   override def get(target: Object, property: String): Any = {
     val grade = target.asInstanceOf[CourseGrade]
     if ("semester.beginOn".equals(property)) {
       grade.semester.endOn.format(yearMonth)
-    } else if (property.startsWith("graduation.")) {
-      val graduation = graduateData.get(grade.std) match {
-        case g@Some(_) => g
-        case None =>
-          val rs = entityDao.findBy(classOf[Graduate], "std", List(grade.std)).headOption
-          rs foreach { r => graduateData.put(grade.std, r) }
-          rs
-      }
-      graduation match {
-        case None => ""
-        case Some(g) =>
-          property match {
-            case "graduation.year" => g.graduateOn.map(_.getYear.toString).getOrElse("")
-            case "graduation.educationResult.code" => g.result.code
-            case "graduation.season" =>
-              if g.graduateOn.isEmpty then ""
-              else if (g.graduateOn.get.getMonth.getValue <= 6) "1321" else "1322"
-          }
-      }
+    } else if (property.startsWith("graduate.")) {
+      graduateHelper.get(grade.std, property)
     } else if (property == "remark") {
       ""
     } else if (property == "course.defaultCredits") {

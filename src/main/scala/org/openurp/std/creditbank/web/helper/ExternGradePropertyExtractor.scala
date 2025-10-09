@@ -17,10 +17,11 @@
 
 package org.openurp.std.creditbank.web.helper
 
+import org.beangle.commons.bean.DefaultPropertyExtractor
+import org.beangle.data.dao.EntityDao
+
 import java.time.format.DateTimeFormatter
 import java.time.{LocalDate, ZoneId}
-
-import org.beangle.commons.bean.DefaultPropertyExtractor
 
 /** 交换成绩输出辅助类
  * 转换属性如下：
@@ -40,18 +41,24 @@ import org.beangle.commons.bean.DefaultPropertyExtractor
  * <tr><td>11. 原学时</td><td>grade.creditHours</td><td></td></tr>
  * <tr><td>12. 原成绩</td><td>grade.scoreText</td><td></td></tr>
  * <tr><td>13. 获得时间</td><td>grade.acquiredIn</td><td></td></tr>
- * <tr><td>14. 转换后教育层次代码</td><td>grade.exchangeStudent.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
- * <tr><td>15. 转换后课程代码</td><td>course.code</td><td></td></tr>
- * <tr><td>16. 转换后课程名称</td><td>course.name</td><td></td></tr>
- * <tr><td>17. 转换后学分</td><td>course.defaultCredits</td><td></td></tr>
- * <tr><td>18. 转换时间</td><td>grade.convertOn</td><td></td></tr>
- * <tr><td>19. 转换后专业名称</td><td>grade.exchangeStudent.std.state.major.name</td><td></td></tr>
+ * <tr><td>14. 届别</td><td>graduation.year</td><td></td></tr>
+ * <tr><td>15. 毕业结业肄业</td><td>graduation.educationResult.code</td><td>1261 毕业,1262 结业</td></tr>
+ * <tr><td>16. 毕业季</td><td>graduation.season</td><td>1321 春,1322 秋</td></tr>
+ * <tr><td>17. 备注</td><td>remark</td><td></td></tr>
+ * <tr><td>18. 学号</td><td>std.code</td><td></td></tr>
+ * <tr><td>19. 转换后教育层次代码</td><td>grade.exchangeStudent.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
+ * <tr><td>20. 转换后课程代码</td><td>course.code</td><td></td></tr>
+ * <tr><td>21. 转换后课程名称</td><td>course.name</td><td></td></tr>
+ * <tr><td>22. 转换后学分</td><td>course.defaultCredits</td><td></td></tr>
+ * <tr><td>23. 转换时间</td><td>grade.convertOn</td><td></td></tr>
+ * <tr><td>24. 转换后专业名称</td><td>grade.exchangeStudent.std.state.major.name</td><td></td></tr>
  * </tbody>
  * </table>
  */
-class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyExtractor {
+class ExternGradePropertyExtractor(entityDao: EntityDao, schoolCode: String) extends DefaultPropertyExtractor {
 
   private val yearMonth = DateTimeFormatter.ofPattern("yyyyMM")
+  private val graduateHelper = new GraduateHelper(entityDao)
 
   override def get(target: Object, property: String): Any = {
     val data = target.asInstanceOf[ExternGradeData]
@@ -62,7 +69,14 @@ class ExternGradePropertyExtractor(schoolCode: String) extends DefaultPropertyEx
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
       case "grade.acquiredIn" => data.grade.acquiredIn.format(yearMonth)
       case "schoolCode" => schoolCode
-      case _ => super.get(target, property)
+      case _ =>
+        if (property.startsWith("graduate.")) {
+          graduateHelper.get(data.grade.externStudent.std, property)
+        } else if (property == "remark") {
+          ""
+        } else {
+          super.get(target, property)
+        }
     }
   }
 }

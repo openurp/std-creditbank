@@ -30,22 +30,23 @@ import java.time.{LocalDate, YearMonth, ZoneId}
  * <tr><td>1. 姓名</td><td>grade.std.name</td><td></td></tr>
  * <tr><td>2. 身份证号</td><td>grade.std.person.code</td><td></td></tr>
  * <tr><td>3. 转换学校代码</td><td>schoolCode</td><td>本学校所在的学分银行分配的代码</td></tr>
- * <tr><td>4. 原课程来源代码</td><td>original.course.code</td><td>01 课程类 02 证书类</td></tr>
- * <tr><td>5. 原专业名称</td><td>grade.major.name</td><td>不涉及专业,待补</td></tr>
- * <tr><td>6. 原课程名称</td><td>grade.certificate.name</td><td></td></tr>
- * <tr><td>7. 原办学机构</td><td>grade.certificate.institutionName</td><td></td></tr>
- * <tr><td>8. 原教育层次代码</td><td>original.level.code</td><td></td></tr>
- * <tr><td>9. 原教育类别代码</td><td>original.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
- * <tr><td>10. 原学分</td><td>original.course.defaultCredits</td><td>以0代替</td></tr>
- * <tr><td>11. 原学时</td><td>original.course.creditHours</td><td>以0代替</td></tr>
- * <tr><td>12. 原成绩</td><td>grade.scoreText</td><td></td></tr>
- * <tr><td>13. 获得时间</td><td>grade.acquiredIn</td<td></td></tr>
- * <tr><td>14. 转换后教育层次代码</td><td>grade.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
- * <tr><td>15. 转换后课程代码</td><td>course.code</td><td></td></tr>
- * <tr><td>16. 转换后课程名称</td><td>course.name</td><td></td></tr>
- * <tr><td>17. 转换后学分</td><td>course.defaultCredits</td><td></td></tr>
- * <tr><td>18. 转换时间</td><td>grade.convertOn</td><td></td></tr>
- * <tr><td>19. 转换后专业</td><td>grade.std.state.major.name</td><td></td></tr>
+ * <tr><td>4. 原证书来源代码</td><td>original.course.code</td><td>01 课程类 02 证书类</td></tr>
+ * <tr><td>5. 原证书类型</td><td>blank.1</td><td>无</td></tr>
+ * <tr><td>6. 原证书名称</td><td>grade.certificate.name</td><td></td></tr>
+ * <tr><td>7. 原证书等级</td><td>blank.2</td><td></td></tr>
+ * <tr><td>8. 原发证机构</td><td>grade.certificate.institutionName</td><td></td></tr>
+ * <tr><td>9. 原教育层次代码</td><td>original.level.code</td><td></td></tr>
+ * <tr><td>10. 原教育类别代码</td><td>original.project.category.code</td><td>30 成人 31 普高 32 网络 33 中职 34 自考</td></tr>
+ * <tr><td>11. 原学分</td><td>original.course.defaultCredits</td><td>以0代替</td></tr>
+ * <tr><td>12. 原学时</td><td>original.course.creditHours</td><td>以0代替</td></tr>
+ * <tr><td>13. 原成绩</td><td>grade.scoreText</td><td></td></tr>
+ * <tr><td>14. 获得时间</td><td>grade.acquiredIn</td<td></td></tr>
+ * <tr><td>15. 转换后教育层次代码</td><td>grade.std.level.code</td><td>20 本科 21 专科 22 专升本 23 高起本</td></tr>
+ * <tr><td>16. 转换后课程代码</td><td>course.code</td><td></td></tr>
+ * <tr><td>17. 转换后课程名称</td><td>course.name</td><td></td></tr>
+ * <tr><td>18. 转换后学分</td><td>course.defaultCredits</td><td></td></tr>
+ * <tr><td>19. 转换时间</td><td>grade.convertOn</td><td></td></tr>
+ * <tr><td>20. 转换后专业</td><td>grade.std.state.major.name</td><td></td></tr>
  * </tbody>
  * </table>
  */

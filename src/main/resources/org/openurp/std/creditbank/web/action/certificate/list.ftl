@@ -3,8 +3,9 @@
 [@b.grid items=certificateGrades var="certificateGrade"]
     [@b.gridbar]
       bar.addItem("导出", action.exportData("grade.std.name:姓名,grade.std.person.code:身份证号,schoolCode:转换学校代码,"+
-                         "original.course.code:原课程来源代码,grade.major.name:原专业名称,grade.certificate.name:原课程名称,"+
-                         "grade.certificate.institutionName:原办学机构,original.level.code:原教育层次代码,"+
+                         "original.course.code:原证书来源代码,blank.1:原证书类型:无,grade.certificate.name:原证书名称,"+
+                         "blank.2:原证书等级:无,"+
+                         "grade.certificate.institutionName:原发证机构,original.level.code:原教育层次代码,"+
                          "original.project.category.code:原教育类别代码,original.course.defaultCredits:原学分,"+
                          "original.course.creditHours:原学时,grade.scoreText:原成绩,grade.acquiredIn:获得时间,"+
                          "grade.std.level.code:转换后教育层次代码,course.code:转换后课程代码,course.name:转换后课程名称,"+

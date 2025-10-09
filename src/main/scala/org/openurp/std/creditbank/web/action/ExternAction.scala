@@ -20,8 +20,8 @@ package org.openurp.std.creditbank.web.action
 import org.beangle.data.dao.{EntityDao, OqlBuilder}
 import org.beangle.doc.transfer.exporter.ExportContext
 import org.beangle.webmvc.support.ActionSupport
-import org.beangle.webmvc.view.View
 import org.beangle.webmvc.support.action.{EntityAction, ExportSupport}
+import org.beangle.webmvc.view.View
 import org.openurp.base.model.Project
 import org.openurp.edu.extern.model.ExternGrade
 import org.openurp.starter.web.support.ProjectSupport
@@ -64,7 +64,7 @@ class ExternAction extends ActionSupport, EntityAction[ExternGrade], ExportSuppo
     given project: Project = getProject
 
     val schoolCode = getConfig("std.creditbank.schooCode", "")
-    context.extractor = new ExternGradePropertyExtractor(schoolCode)
+    context.extractor = new ExternGradePropertyExtractor(entityDao, schoolCode)
     val data = entityDao.search(getQueryBuilder.limit(null))
     val rs = data.flatMap { g =>
       g.exempts map (c => new ExternGradeData(g, c))

@@ -2,7 +2,12 @@
 [@b.head/]
   [@b.grid items=grades var="grade"]
     [@b.gridbar]
-      bar.addItem("导出", action.exportData("std.name:姓名,std.person.code:身份证号,std.state.major.name:专业名称,course.name:课程名称,std.level.code:教育层次代码,std.project.category.code:教育类别代码,course.defaultCredits:学分,course.creditHours:学时,scoreText:成绩,semester.beginOn:获得时间,graduation.year:届别,graduation.educationResult.code:毕业结业肄业,graduation.season:毕业季,remark:备注,std.code:学号", "xls", "fileName=本校${graduateBatch.name}批次学分银行成绩"), "excel.png");
+      bar.addItem("导出",
+          action.exportData("std.name:姓名,std.person.code:身份证号,std.state.major.name:专业名称,course.name:课程名称,"+
+                            "std.level.code:教育层次代码,std.project.category.code:教育类别代码,course.defaultCredits:学分,"+
+                            "course.creditHours:学时,scoreText:成绩,semester.beginOn:获得时间,graduate.year:届别,"+
+                            "graduate.educationResult.code:毕业结业肄业,graduate.season:毕业季,remark:备注,std.code:学号",
+                             "xls", "fileName=本校${graduateBatch.name}批次学分银行成绩"), "excel.png");
     [/@]
     [@b.row]
       [@b.col title="序号" width="4%"]${grade_index+1}[/@]
