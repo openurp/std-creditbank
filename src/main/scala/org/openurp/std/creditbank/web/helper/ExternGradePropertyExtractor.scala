@@ -65,7 +65,7 @@ class ExternGradePropertyExtractor(entityDao: EntityDao, schoolCode: String) ext
     property match {
       case "original.course.code" => "01"
       case "grade.credits" => FloatTrunc.trunc(data.grade.credits)
-      case "grade.creditHours" => "0"
+      case "grade.creditHours" => ""
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
       case "grade.acquiredIn" => data.grade.acquiredIn.format(yearMonth)
       case "schoolCode" => schoolCode

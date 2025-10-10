@@ -58,10 +58,10 @@ class CertificateGradePropertyExtractor(schoolCode: String) extends DefaultPrope
     val data = target.asInstanceOf[CertificateData]
     property match {
       case "original.course.code" => "02"
-      case "original.level.code" => "20" //由于获取证书的层次未知，目前暂定20
+      case "original.level.code" => "85" //由于获取证书的层次未知，目前暂定85
       case "original.project.category.code" => data.grade.std.project.category.code
       case "original.course.defaultCredits" => "0"
-      case "original.course.creditHours" => "0"
+      case "original.course.creditHours" => ""
       case "grade.major.name" => "待补"
       case "schoolCode" => schoolCode
       case "grade.convertOn" => LocalDate.ofInstant(data.grade.updatedAt, ZoneId.systemDefault()).format(yearMonth)
