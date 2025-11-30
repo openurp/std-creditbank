@@ -2,7 +2,7 @@ import org.openurp.parent.Settings._
 import org.openurp.parent.Dependencies._
 
 ThisBuild / organization := "org.openurp.std.creditbank"
-ThisBuild / version := "0.0.21-SNAPSHOT"
+ThisBuild / version := "0.0.21"
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
@@ -23,16 +23,16 @@ ThisBuild / developers := List(
 ThisBuild / description := "OpenURP Std CreditBank"
 ThisBuild / homepage := Some(url("http://openurp.github.io/std-creditbank/index.html"))
 
-val apiVer = "0.47.0"
-val starterVer = "0.4.1"
-val baseVer = "0.4.57"
+val apiVer = "0.48.2"
+val starterVer = "0.4.8"
+val baseVer = "0.4.63"
 val openurp_edu_api = "org.openurp.edu" % "openurp-edu-api" % apiVer
 val openurp_std_api = "org.openurp.std" % "openurp-std-api" % apiVer
 val openurp_stater_web = "org.openurp.starter" % "openurp-starter-web" % starterVer
 val openurp_base_tag = "org.openurp.base" % "openurp-base-tag" % baseVer
 
 lazy val root = (project in file("."))
-  .enablePlugins(WarPlugin,UndertowPlugin)
+  .enablePlugins(WarPlugin,TomcatPlugin)
   .settings(
     name := "openurp-std-creditbank-webapp",
     common,
